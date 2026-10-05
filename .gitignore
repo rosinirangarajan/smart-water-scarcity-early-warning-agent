@@ -3,3 +3,22 @@ data/
 .env
 !data/
 !data/training_master_engineered.csv
+
+# Python virtual environments
+.venv/
+.venv_neera/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Node.js
+node_modules/
+.next/
+
+# Runtime cache and logs
+outputs/cache/
+outputs/logs/
+
+# OS
+.DS_Store

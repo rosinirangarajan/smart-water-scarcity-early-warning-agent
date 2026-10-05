@@ -154,23 +154,6 @@ interface EnvRisk {
   recharge_potential: string;
 }
 
-interface IotSensor {
-  sensor_id: string;
-  station_id: string;
-  latitude: number;
-  longitude: number;
-  model: string;
-  status: string;
-  latest_reading: {
-    water_level_mbgl?: number;
-    battery_pct?: number;
-    temperature_c?: number;
-    humidity_pct?: number;
-    timestamp?: string;
-  };
-  alerts: string[];
-}
-
 export default function Dashboard() {
   // Navigation & Location States
   const [selectedStation, setSelectedStation] = useState<string>("020109B");
@@ -183,7 +166,7 @@ export default function Dashboard() {
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
 
-  // Connection & IoT telemetry
+  // Connection & API telemetry
   const [apiStatus, setApiStatus] = useState<"connected" | "disconnected" | "checking">("checking");
 
   // Telemetry States
@@ -207,7 +190,7 @@ export default function Dashboard() {
   // Copilot Chat States
   const [chatOpen, setChatOpen] = useState<boolean>(false);
   const [chatMessages, setChatMessages] = useState<Array<{ sender: "user" | "bot"; text: string }>>([
-    { sender: "bot", text: "Hello! I am the NEERA Hydro-Advisor. Ask me anything about groundwater sustainability, crop selection, or water policies in this region." }
+    { sender: "bot", text: "Hello! I am your AI Water Scarcity Advisor. Ask me anything about groundwater sustainability, crop selection, or water policies in this region." }
   ]);
   const [chatInput, setChatInput] = useState<string>("");
   const [chatLoading, setChatLoading] = useState<boolean>(false);
@@ -518,7 +501,7 @@ export default function Dashboard() {
           <div>
             <div className="flex items-center gap-2">
               <h1 className="text-3xl font-black tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-                NEERA Geographic Intelligence
+                Smart Water Scarcity Early-Warning Agent
               </h1>
               <div className="flex items-center gap-1 text-[10px] bg-slate-900 border border-slate-800/80 px-2.5 py-0.5 rounded-full text-slate-400">
                 <span className={`w-1.5 h-1.5 rounded-full ${apiStatus === "connected" ? "bg-green-500 animate-pulse" : apiStatus === "disconnected" ? "bg-red-500" : "bg-yellow-500 animate-pulse"}`}></span>
@@ -526,7 +509,7 @@ export default function Dashboard() {
               </div>
             </div>
             <p className="text-xs font-semibold text-slate-400 mt-0.5">
-              Civic-Tech Hydrology Operations & Drought Early-Warning Platform
+              AI-Powered Water Resource Monitoring & Early-Warning Platform
             </p>
           </div>
         </div>
@@ -649,7 +632,7 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between border-b border-slate-800/60 pb-2">
                   <h3 className="text-xs font-bold uppercase text-slate-400 flex items-center gap-1.5 font-sans">
                     <Activity className="w-4 h-4 text-cyan-400" />
-                    Sustainability & Crisis Index
+                    Water Scarcity Risk & Sustainability Index
                   </h3>
                   <span className="text-[10px] text-slate-500 bg-slate-950 px-2 py-0.5 rounded border border-slate-850">Real-time Overlay</span>
                 </div>
@@ -935,7 +918,7 @@ export default function Dashboard() {
               <div className="bg-slate-900/60 border border-slate-800/80 rounded-xl p-5 backdrop-blur-md flex flex-col gap-4">
                 <div className="flex items-center gap-2 border-b border-slate-800/60 pb-2.5">
                   <Droplet className="w-5 h-5 text-cyan-400" />
-                  <h3 className="text-base font-bold text-slate-200 font-sans">AI Hydrological Commentary & Crop Advisories</h3>
+                  <h3 className="text-base font-bold text-slate-200 font-sans">AI Hydrological Insights & Recommendations</h3>
                 </div>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -1193,9 +1176,9 @@ export default function Dashboard() {
 
       {/* Footer System Info */}
       <footer className="border-t border-slate-900 mt-10 pt-4 text-center text-xs text-slate-600 flex flex-col sm:flex-row justify-between items-center gap-3">
-        <span>© 2026 NEERA Platform. Developed under strict spatiotemporal and geographic validation constraints.</span>
+        <span>© 2026 Smart Water Scarcity Early-Warning Agent. FLA prototype adapted from NEERA.</span>
         <span className="font-mono text-[9px] bg-slate-950/80 border border-slate-800/60 px-3 py-1 rounded-md text-slate-500">
-          Core Model: CatBoost Validated • Mapping: Nominatim & Open-Meteo • Cache: OK
+          Core Model: CatBoost Validated • Reference implementation: NEERA • Mapping: Nominatim & Open-Meteo
         </span>
       </footer>
 
@@ -1208,7 +1191,7 @@ export default function Dashboard() {
               <div className="flex items-center gap-2">
                 <HelpCircle className="w-5 h-5 text-cyan-400" />
                 <div>
-                  <h4 className="text-xs font-black text-slate-100 font-sans">NEERA Hydro-Advisor</h4>
+                  <h4 className="text-xs font-black text-slate-100 font-sans">AI Water Scarcity Advisor</h4>
                   <div className="flex items-center gap-1 text-[9px] text-slate-500 font-sans">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                     <span>Online • Hydrologist Agent</span>
@@ -1284,7 +1267,7 @@ export default function Dashboard() {
                     setChatMessages(prev => [...prev, { sender: "bot", text: "System Error: The AI advisor is currently busy. Please retry in a few moments." }]);
                   }
                 } catch {
-                  setChatMessages(prev => [...prev, { sender: "bot", text: "Network Connection Lost: Cannot reach the NEERA server." }]);
+                  setChatMessages(prev => [...prev, { sender: "bot", text: "Network Connection Lost: Cannot reach the server." }]);
                 } finally {
                   setChatLoading(false);
                 }

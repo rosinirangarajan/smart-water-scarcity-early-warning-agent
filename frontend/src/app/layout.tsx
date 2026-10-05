@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NEERA Groundwater Intelligence Dashboard",
-  description: "Near-real-time spatiotemporal groundwater monitoring and alerting platform for Karnataka, India.",
+  title: "Smart Water Scarcity Early-Warning Agent",
+  description: "AI-Powered Water Resource Monitoring & Early-Warning Platform",
 };
 
 export default function RootLayout({
